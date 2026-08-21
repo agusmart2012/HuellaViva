@@ -72,11 +72,11 @@ export function ParallaxComponent() {
               src="/hero-dogs-clean.jpg"
               loading="eager"
               data-parallax-layer="1"
-              alt="Tres perros asomándose, felices de tener un hogar"
+              alt="Mascotas asomándose: gato, perros, conejo y un periquito, felices de tener un hogar"
               className="parallax__layer-img"
             />
             <div data-parallax-layer="3" className="parallax__layer-title">
-              <h2 className="parallax__title">Huella Viva</h2>
+              <h2 className="parallax__title sr-only">Huella Viva</h2>
             </div>
           </div>
           <div className="parallax__fade"></div>

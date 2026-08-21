@@ -109,7 +109,7 @@ select option {
   object-fit: cover;
   width: 100%;
   max-width: none;
-  height: 120%;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -129,13 +129,22 @@ select option {
 .parallax__layer-img {
   pointer-events: none;
   object-fit: cover;
-  object-position: top center;
+  object-position: center 20%;
   width: 100%;
   max-width: none;
-  height: 130%;
+  height: 115%;
   position: absolute;
-  top: -8%;
+  top: -4%;
   left: 0;
+}
+
+@media (max-aspect-ratio: 4/3) {
+  .parallax__layer-img {
+    object-fit: contain;
+    object-position: center center;
+    height: 100%;
+    top: 0;
+  }
 }
 
 .parallax__layer-title {

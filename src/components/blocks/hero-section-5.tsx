@@ -32,7 +32,7 @@ export function HeroSection() {
             <img
               className="absolute inset-0 size-full object-cover object-top"
               src="/hero-dogs-clean.jpg"
-              alt="Tres perros asomándose, felices de tener un hogar"
+              alt="Mascotas asomándose: gato, perros, conejo y un periquito, felices de tener un hogar"
             />
             <div className="relative z-10 mx-auto flex min-h-[88vh] max-w-7xl flex-col justify-end px-6 pb-16 pt-28 sm:min-h-[78vh] lg:px-12 lg:pb-20">
               <div className="mx-auto max-w-lg text-center lg:mx-0 lg:max-w-2xl lg:text-left">
