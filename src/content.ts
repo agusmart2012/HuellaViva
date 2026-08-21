@@ -5,7 +5,11 @@ export const org = {
   short:
     'Proyecto de tenencia responsable: educamos, acompañamos y promovemos un vínculo justo con los animales.',
   city: 'Uruguay',
-  email: 'hola@huellaviva.org',
+  email: 'vinverso@harwoodschool.edu.uy',
+  emails: [
+    'vinverso@harwoodschool.edu.uy',
+    'agustinmartinez@harwoodschool.edu.uy',
+  ] as const,
   instagram: '@huellaviva',
   year: new Date().getFullYear(),
 }

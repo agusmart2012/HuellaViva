@@ -1,11 +1,84 @@
 import { type FormEvent, useState } from 'react'
+import { org } from '@/content'
+
+const motivoLabels: Record<string, string> = {
+  voluntariado: 'Ser voluntario',
+  adopcion: 'Adoptar',
+  charla: 'Pedir una charla',
+  donacion: 'Donar',
+  otro: 'Otra consulta',
+}
+
+function openMailto(
+  nombre: string,
+  email: string,
+  motivo: string,
+  mensaje: string,
+) {
+  const to = org.emails.join(',')
+  const subject = encodeURIComponent(`Huella Viva — ${motivo}`)
+  const body = encodeURIComponent(
+    `Nombre: ${nombre}\nEmail: ${email}\nQuiero: ${motivo}\n\n${mensaje}`,
+  )
+  window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
+}
 
 export function Contact() {
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setSent(true)
+    const form = event.currentTarget
+    const data = new FormData(form)
+
+    if (String(data.get('_honey') ?? '')) {
+      setStatus('sent')
+      return
+    }
+
+    const nombre = String(data.get('nombre') ?? '').trim()
+    const email = String(data.get('email') ?? '').trim()
+    const motivoValue = String(data.get('motivo') ?? 'otro')
+    const motivo = motivoLabels[motivoValue] ?? motivoValue
+    const mensaje = String(data.get('mensaje') ?? '').trim()
+
+    setStatus('sending')
+
+    const payload = {
+      nombre,
+      email,
+      motivo,
+      mensaje,
+      _subject: `Huella Viva — ${motivo}`,
+      _template: 'table',
+      _captcha: 'false',
+    }
+
+    try {
+      const results = await Promise.all(
+        org.emails.map(async (address) => {
+          const res = await fetch(`https://formsubmit.co/ajax/${address}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: 'application/json',
+            },
+            body: JSON.stringify(payload),
+          })
+          const json = (await res.json()) as { success?: string | boolean }
+          return (
+            res.ok && (json.success === true || json.success === 'true')
+          )
+        }),
+      )
+      if (!results.every(Boolean)) {
+        throw new Error('FormSubmit no disponible')
+      }
+      setStatus('sent')
+    } catch {
+      openMailto(nombre, email, motivo, mensaje)
+      setStatus('sent')
+    }
   }
 
   return (
@@ -22,33 +95,57 @@ export function Contact() {
             ¿Querés sumarte, dar una charla en tu clase, adoptar o proponer una
             idea? Dejanos un mensaje.
           </p>
+          <ul className="mt-8 space-y-2">
+            {org.emails.map((mail) => (
+              <li key={mail}>
+                <a
+                  href={`mailto:${mail}`}
+                  className="text-sm text-sand no-underline hover:underline"
+                >
+                  {mail}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
 
-        {sent ? (
-          <div className="flex flex-col justify-center rounded-[1.6rem] bg-forest-dark p-8">
+        {status === 'sent' ? (
+          <div
+            className="flex flex-col justify-center rounded-[1.6rem] bg-forest-dark p-8"
+            role="status"
+          >
             <p className="font-display text-3xl font-semibold">¡Gracias!</p>
             <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream/75">
-              Recibimos tu mensaje en esta demo. Cuando corrijas los datos de
-              contacto, lo vamos a mandar de verdad al equipo.
+              Tu mensaje llega a {org.emails[0]} y a {org.emails[1]}. Te vamos a
+              responder a la brevedad.
             </p>
             <button
               type="button"
               className="mt-6 w-fit rounded-full bg-cream px-5 py-2.5 text-sm font-semibold text-forest"
-              onClick={() => setSent(false)}
+              onClick={() => setStatus('idle')}
             >
               Enviar otro
             </button>
           </div>
         ) : (
           <form
-            className="rounded-[1.6rem] bg-forest-dark p-6 sm:p-8"
+            className="relative overflow-hidden rounded-[1.6rem] bg-forest-dark p-6 sm:p-8"
             onSubmit={handleSubmit}
           >
+            <input
+              type="text"
+              name="_honey"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
+            />
             <label className="block text-sm font-medium">
               Nombre
               <input
                 required
                 name="nombre"
+                autoComplete="name"
                 className="mt-1.5 w-full rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 placeholder:text-cream/35 focus:ring-2 focus:ring-sand"
                 placeholder="Tu nombre"
               />
@@ -59,6 +156,7 @@ export function Contact() {
                 required
                 type="email"
                 name="email"
+                autoComplete="email"
                 className="mt-1.5 w-full rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 placeholder:text-cream/35 focus:ring-2 focus:ring-sand"
                 placeholder="tumail@correo.com"
               />
@@ -89,9 +187,10 @@ export function Contact() {
             </label>
             <button
               type="submit"
-              className="mt-6 w-full rounded-full bg-clay px-5 py-3 text-sm font-semibold text-white transition hover:bg-clay-dark"
+              disabled={status === 'sending'}
+              className="mt-6 w-full rounded-full bg-clay px-5 py-3 text-sm font-semibold text-white transition hover:bg-clay-dark disabled:cursor-wait disabled:opacity-70"
             >
-              Enviar mensaje
+              {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
             </button>
           </form>
         )}
