@@ -1,49 +1,30 @@
-import { stats, teamNote, values } from '@/content'
+import { aboutHeading, teamNote, values } from '@/content'
 
 export function About() {
   return (
-    <section id="nosotros" className="border-t border-line bg-paper">
-      <div className="mx-auto max-w-6xl px-5 py-20">
-        <div className="grid gap-12 lg:grid-cols-2 lg:items-end">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay">
-              Quiénes somos
-            </p>
-            <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-              Una causa que empezó en el aula y quiere llegar a toda la comunidad.
-            </h2>
+    <section id="nosotros" className="border-t border-line bg-muted">
+      <div className="mx-auto max-w-6xl px-5 py-20 lg:py-28">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
+            {aboutHeading}
+          </h2>
+          <div className="max-w-xl space-y-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+            {teamNote.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
-          <p className="max-w-xl text-base leading-relaxed text-ink-soft">
-            {teamNote} Este sitio es el primer paso: una casa digital para
-            educar, convocar voluntarios y mostrar que la tenencia responsable
-            es posible.
-          </p>
         </div>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {stats.map((item) => (
-            <article
-              key={item.value}
-              className="rounded-2xl border border-line bg-cream p-5"
-            >
-              <p className="font-display text-2xl font-semibold text-forest">
-                {item.value}
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                {item.label}
-              </p>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 grid gap-4 md:grid-cols-3">
+        <div className="mt-12 grid gap-4 md:grid-cols-3">
           {values.map((item) => (
             <article
               key={item.title}
-              className="rounded-2xl bg-forest px-6 py-7 text-cream"
+              className="rounded-2xl border border-line bg-card p-6"
             >
-              <h3 className="font-display text-2xl font-semibold">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-cream/80">
+              <h3 className="text-xl font-bold tracking-tight text-foreground">
+                {item.title}
+              </h3>
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">
                 {item.text}
               </p>
             </article>

@@ -12,115 +12,146 @@ export const org = {
   ] as const,
   instagram: '@huellaviva',
   year: new Date().getFullYear(),
+  schoolName: 'Harwood School',
+  schoolUrl: 'https://www.harwoodschool.edu.uy',
 }
 
 export const nav = [
   { href: '#nosotros', label: 'Nosotros' },
-  { href: '#tenencia', label: 'Tenencia responsable' },
-  { href: '#sumate', label: 'Sumate' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#tenencia', label: 'Tenencia' },
+  { href: '#preguntas', label: 'Preguntas' },
 ]
+
+export const goalsHeading = '¿Qué queremos lograr?'
 
 export const stats = [
   {
-    value: 'De por vida',
-    label: 'Un animal no es un momento: es una decisión que dura 10 a 18 años.',
+    value: 'Cuidar mejor a nuestras mascotas',
+    label:
+      'Queremos que las personas sepan cómo cuidar bien a sus mascotas y que entiendan que tener un animal es una responsabilidad.',
   },
   {
-    value: 'Castrar',
-    label: 'Es la forma más concreta de frenar el abandono y el sufrimiento.',
+    value: 'Evitar el abandono',
+    label:
+      'Queremos ayudar a que menos animales sean abandonados y que las personas piensen bien antes de tener una mascota.',
   },
   {
-    value: 'Adoptar',
-    label: 'Hay miles de perros y gatos esperando un hogar, no una vidriera.',
+    value: 'Respetar a los animales',
+    label:
+      'Buscamos que todos aprendamos a tratar a los animales con respeto, cariño y paciencia.',
   },
   {
-    value: 'Educar',
-    label: 'La tenencia responsable se enseña. Empieza en casa y en el aula.',
+    value: 'Tener una comunidad más responsable',
+    label:
+      'Queremos que entre todos podamos mejorar la vida de los animales y crear un lugar donde estén más cuidados y protegidos.',
   },
 ]
+
+export const aboutHeading =
+  'Una idea que nació en la clase y quiere llegar lejos.'
 
 export const values = [
   {
     title: 'Misión',
-    text: 'Promover la tenencia responsable de animales de compañía, para que cada vínculo se base en el cuidado, la salud, el respeto y el compromiso de por vida.',
+    text: 'Promover la tenencia responsable de animales de compañía, compartiendo información que ayude a las personas a entender todo lo que implica tener una mascota y cómo pueden cuidarla mejor.',
   },
   {
     title: 'Visión',
-    text: 'Una comunidad donde ningún animal sea abandonado, maltratado o tratado como un objeto, y donde adoptar, castrar y educar sea lo normal.',
+    text: 'Queremos una comunidad donde los animales sean tratados con respeto y cariño, donde se piense bien antes de tener una mascota y donde adoptar, cuidar y prevenir el abandono sean acciones cada vez más comunes.',
   },
   {
     title: 'Valores',
-    text: 'Empatía, responsabilidad, educación, transparencia y trabajo en red. No somos un depósito de animales: somos una causa que se construye entre todos.',
+    text: 'Respeto, empatía, responsabilidad, compromiso y solidaridad.\n\nCreemos que los animales merecen ser cuidados y tratados bien, y que entre todos podemos hacer algo para mejorar su vida. Huella Viva no busca solamente hablar del problema, sino también aportar ideas y acciones para generar un cambio.',
   },
 ]
+
+export const tenenciaIntro =
+  'La tenencia responsable es cuidar a nuestras mascotas y hacernos cargo de ellas durante toda su vida. No se trata solamente de darles comida, sino también de darles cariño, atención, un lugar seguro y todo lo que necesitan para estar bien.'
 
 export const pilares = [
   {
-    title: 'Compromiso de por vida',
-    text: 'Un animal no es un regalo ni un juguete. Necesita tiempo, afecto y estabilidad durante toda su vida.',
+    title: 'Compromiso para toda la vida',
+    text: 'Tener una mascota es una responsabilidad grande. Antes de adoptar, tenemos que pensar si podemos darle el tiempo, el cariño y los cuidados que necesita durante toda su vida.',
   },
   {
-    title: 'Salud y veterinario',
-    text: 'Vacunas, desparasitación, castración y controles regulares protegen a tu compañero y a toda la comunidad.',
+    title: 'Cuidar su salud',
+    text: 'Es importante llevarla al veterinario, darle sus vacunas, desparasitarla y estar atentos si se enferma. También es importante la castración para ayudar a evitar camadas no deseadas.',
   },
   {
-    title: 'Hogar seguro',
-    text: 'Agua fresca, alimento adecuado, refugio del frío y del calor, y un espacio limpio son derechos básicos.',
+    title: 'Un hogar seguro',
+    text: 'Nuestra mascota necesita agua fresca, comida, un lugar limpio y protegido del frío y del calor. También tiene que tener un espacio donde pueda estar tranquila y sentirse segura.',
   },
   {
-    title: 'Educación positiva',
-    text: 'Entrená con paciencia y refuerzo positivo. La socialización evita miedos y problemas de conducta.',
+    title: 'Educar con paciencia',
+    text: 'Las mascotas también tienen que aprender. Es importante enseñarles con paciencia, cariño y sin maltratarlas, para que puedan convivir mejor con las personas y con otros animales.',
   },
   {
-    title: 'Respeto a la ley y al otro',
-    text: 'Correa en la vía pública, recolectá las heces, identificá con microchip y nunca maltrates ni abandones.',
+    title: 'Respetar a los demás',
+    text: 'Cuando salimos con nuestra mascota tenemos que hacernos responsables de ella. Por ejemplo, llevarla con correa cuando corresponde y recoger sus necesidades para mantener los espacios públicos limpios.',
   },
   {
-    title: 'Adopción consciente',
-    text: 'Adoptá en refugios o redes serias. Pensá si podés sostener el costo, el tiempo y el cuidado antes de decidir.',
+    title: 'Adoptar pensando bien',
+    text: 'Adoptar una mascota es una decisión importante. Antes de hacerlo, tenemos que pensar si tenemos el tiempo, el espacio y los recursos necesarios para cuidarla y darle una buena vida.',
   },
 ]
+
+export const decalogoHeading =
+  'Si no le podés dar tiempo y cuidado de verdad, es mejor esperar.'
 
 export const decalogo = [
-  'Alimento, agua limpia y un lugar para descansar todos los días.',
-  'Atención veterinaria, vacunas y castración / esterilización.',
-  'Tiempo de juego, paseos y compañía: no son decoración.',
-  'Identificación (collar, placa y, si es posible, microchip).',
-  'Paseo con correa y recolección de heces en la vía pública.',
-  'Nunca abandonar. Si no podés seguir, buscá una red de adopción.',
-  'No comprar por impulso ni regalar animales sin compromiso.',
-  'Socializar y educar sin violencia.',
-  'Protegerlos del tránsito, el calor extremo y los peligros de la calle.',
-  'Ser su voz: denunciar maltrato y enseñar con el ejemplo.',
+  'Todos los días necesita comida, agua limpia y un lugar donde descansar.',
+  'Hay que llevarlo al veterinario, ponerle las vacunas y castrarlo o esterilizarlo.',
+  'Jugar, sacarlo a pasear y hacerle compañía. No es un adorno de la casa.',
+  'Tiene que estar identificado: collar, placa y, si se puede, microchip.',
+  'En la calle, siempre con correa. Y las heces se recogen, siempre.',
+  'Nunca lo abandones. Si no podés seguir cuidándolo, buscá una red de adopción.',
+  'No lo compres de un momento para el otro ni lo regales sin que alguien se comprometa de verdad.',
+  'Enseñale y socializalo sin violencia.',
+  'Cuidalo del tránsito, del calor fuerte y de los peligros de la calle.',
+  'Sé su voz: denunciá el maltrato y enseñá con tu ejemplo.',
 ]
 
-export const helpWays = [
+export const faqs = [
   {
-    title: 'Voluntariado',
-    text: 'Ayudá en ferias, difusión, charlas o logística. Cada hora cuenta.',
-    cta: 'Quiero ser voluntario',
-    href: '#contacto',
+    q: '¿Esto es un refugio?',
+    a: 'No. Somos un grupo del colegio que está juntando ayuda para varios refugios. Nosotros no tenemos animales acá: lo que recaudamos se lo entregamos a ellos.',
   },
   {
-    title: 'Adoptá, no compres',
-    text: 'Si tu hogar está listo, adoptá con conciencia. Nosotros te orientamos.',
-    cta: 'Quiero adoptar',
-    href: '#contacto',
+    q: '¿Qué estamos juntando?',
+    a: 'Tres cosas:',
+    list: [
+      'plata, en las alcancías que hay por el colegio',
+      'ropa en buen estado, para que los refugios la vendan y consigan dinero',
+      'cosas para los animales y para el refugio (alimento, camas, juguetes, productos de limpieza, etc.)',
+    ],
   },
   {
-    title: 'Difundí',
-    text: 'Compartí la campaña en el colegio, en casa y en redes. El cambio empieza cuando se habla.',
-    cta: 'Escribinos',
-    href: '#contacto',
+    q: '¿La ropa tiene que estar nueva?',
+    a: 'No, pero sí tiene que estar limpia y en buen estado. Si está rota, manchada o no se puede usar, no sirve para venderla.',
   },
   {
-    title: 'Doná',
-    text: 'Insumos, alimento o un aporte económico para jornadas y material educativo.',
-    cta: 'Quiero donar',
-    href: '#contacto',
+    q: '¿Para qué son las alcancías?',
+    a: 'Para que quien quiera pueda dejar una moneda o lo que pueda. Esa plata va a los refugios, igual que las donaciones.',
+  },
+  {
+    q: '¿Qué es la tenencia responsable?',
+    a: 'Es cuidar a un animal de por vida: darle de comer, llevarlo al veterinario, educarlo, protegerlo y no abandonarlo. Tener una mascota no es un juego.',
+  },
+  {
+    q: '¿Por qué es tan importante castrar o esterilizar?',
+    a: 'Porque nacen muchos más animales de los que hay hogares. Si no se castra, hay más abandono y más sufrimiento. También ayuda a que el animal esté más sano.',
+  },
+  {
+    q: '¿Puedo adoptar un animal en el colegio?',
+    a: 'No. Acá no hay animales para adoptar. Si querés adoptar, hay que ir a un refugio, con tiempo, responsabilidad y hablando en casa primero.',
+  },
+  {
+    q: '¿Cómo ayudo si no puedo donar plata ni cosas?',
+    a: 'Podés sumarte a la campaña, contarles a otros qué estamos haciendo y cuidar bien a tu mascota, si tenés una. Ayudar también es informarse y dar el ejemplo.',
   },
 ]
 
-export const teamNote =
-  'Huella Viva nació como un proyecto de colegio. Somos estudiantes que decidimos convertir un trabajo de clase en una organización sin fines de lucro, para que la tenencia responsable no quede solo en un afiche.'
+export const teamNote = [
+  'Esto nació como un proyecto del colegio, pero quisimos que no quedara solamente como un trabajo para entregar. Somos estudiantes que nos preocupamos por cómo viven muchos animales y creemos que, con pequeños cambios, podemos ayudar.',
+  'Por eso creamos este proyecto para crear conciencia y mostrar que tener una mascota no es solo darle comida y jugar con ella. También significa cuidarla, llevarla al veterinario, darle un lugar seguro, respetarla y hacerse responsable de ella durante toda su vida.',
+]

@@ -1,10 +1,10 @@
 import { About } from '@/components/About'
 import { Contact } from '@/components/Contact'
+import { Faq } from '@/components/Faq'
 import { Footer } from '@/components/Footer'
 import { Guide } from '@/components/Guide'
 import { Header } from '@/components/Header'
-import { Help } from '@/components/Help'
-import { ParallaxComponent } from '@/components/ui/parallax-scrolling'
+import { Hero } from '@/components/Hero'
 
 export default function App() {
   return (
@@ -13,11 +13,13 @@ export default function App() {
         Saltar al contenido
       </a>
       <Header />
-      <ParallaxComponent />
-      <About />
-      <Guide />
-      <Help />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Guide />
+        <Faq />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

@@ -23,6 +23,9 @@ function openMailto(
   window.location.href = `mailto:${to}?subject=${subject}&body=${body}`
 }
 
+const fieldClass =
+  'mt-1.5 w-full rounded-xl border border-line bg-card px-3 py-2.5 text-foreground outline-none ring-0 placeholder:text-muted-foreground/70 focus:border-foreground'
+
 export function Contact() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent'>('idle')
 
@@ -66,9 +69,7 @@ export function Contact() {
             body: JSON.stringify(payload),
           })
           const json = (await res.json()) as { success?: string | boolean }
-          return (
-            res.ok && (json.success === true || json.success === 'true')
-          )
+          return res.ok && (json.success === true || json.success === 'true')
         }),
       )
       if (!results.every(Boolean)) {
@@ -82,46 +83,26 @@ export function Contact() {
   }
 
   return (
-    <section id="contacto" className="border-t border-line bg-forest text-cream">
-      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2">
+    <section id="contacto" className="border-t border-line bg-muted">
+      <div className="mx-auto grid max-w-6xl gap-12 px-5 py-20 lg:grid-cols-2 lg:py-28">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-sand">
-            Contacto
-          </p>
-          <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
             Escribinos. Este proyecto se construye entre todos.
           </h2>
-          <p className="mt-4 max-w-md text-base leading-relaxed text-cream/75">
-            ¿Querés sumarte, dar una charla en tu clase, adoptar o proponer una
-            idea? Dejanos un mensaje.
-          </p>
-          <ul className="mt-8 space-y-2">
-            {org.emails.map((mail) => (
-              <li key={mail}>
-                <a
-                  href={`mailto:${mail}`}
-                  className="text-sm text-sand no-underline hover:underline"
-                >
-                  {mail}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
 
         {status === 'sent' ? (
           <div
-            className="flex flex-col justify-center rounded-[1.6rem] bg-forest-dark p-8"
+            className="flex flex-col justify-center rounded-2xl border border-line bg-card p-8"
             role="status"
           >
-            <p className="font-display text-3xl font-semibold">¡Gracias!</p>
-            <p className="mt-3 max-w-sm text-sm leading-relaxed text-cream/75">
-              Tu mensaje llega a {org.emails[0]} y a {org.emails[1]}. Te vamos a
-              responder a la brevedad.
+            <p className="text-2xl font-bold tracking-tight">¡Gracias!</p>
+            <p className="mt-3 max-w-sm text-sm leading-relaxed text-muted-foreground">
+              Te vamos a responder a la brevedad.
             </p>
             <button
               type="button"
-              className="mt-6 w-fit rounded-full bg-cream px-5 py-2.5 text-sm font-semibold text-forest"
+              className="mt-6 w-fit rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark"
               onClick={() => setStatus('idle')}
             >
               Enviar otro
@@ -129,7 +110,7 @@ export function Contact() {
           </div>
         ) : (
           <form
-            className="relative overflow-hidden rounded-[1.6rem] bg-forest-dark p-6 sm:p-8"
+            className="relative overflow-hidden rounded-2xl border border-line bg-card p-6 sm:p-8"
             onSubmit={handleSubmit}
           >
             <input
@@ -140,32 +121,32 @@ export function Contact() {
               aria-hidden="true"
               className="absolute -left-[9999px] h-0 w-0 overflow-hidden opacity-0"
             />
-            <label className="block text-sm font-medium">
+            <label className="block text-sm font-medium text-foreground">
               Nombre
               <input
                 required
                 name="nombre"
                 autoComplete="name"
-                className="mt-1.5 w-full rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 placeholder:text-cream/35 focus:ring-2 focus:ring-sand"
+                className={fieldClass}
                 placeholder="Tu nombre"
               />
             </label>
-            <label className="mt-4 block text-sm font-medium">
+            <label className="mt-4 block text-sm font-medium text-foreground">
               Email
               <input
                 required
                 type="email"
                 name="email"
                 autoComplete="email"
-                className="mt-1.5 w-full rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 placeholder:text-cream/35 focus:ring-2 focus:ring-sand"
+                className={fieldClass}
                 placeholder="tumail@correo.com"
               />
             </label>
-            <label className="mt-4 block text-sm font-medium">
+            <label className="mt-4 block text-sm font-medium text-foreground">
               Quiero
               <select
                 name="motivo"
-                className="mt-1.5 w-full rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 focus:ring-2 focus:ring-sand"
+                className={fieldClass}
                 defaultValue="voluntariado"
               >
                 <option value="voluntariado">Ser voluntario</option>
@@ -175,20 +156,20 @@ export function Contact() {
                 <option value="otro">Otra consulta</option>
               </select>
             </label>
-            <label className="mt-4 block text-sm font-medium">
+            <label className="mt-4 block text-sm font-medium text-foreground">
               Mensaje
               <textarea
                 required
                 name="mensaje"
                 rows={4}
-                className="mt-1.5 w-full resize-y rounded-xl border-0 bg-cream/10 px-3 py-2.5 text-cream outline-none ring-1 ring-cream/15 placeholder:text-cream/35 focus:ring-2 focus:ring-sand"
+                className={`${fieldClass} resize-y`}
                 placeholder="Contanos en qué querés ayudar o qué necesitás."
               />
             </label>
             <button
               type="submit"
               disabled={status === 'sending'}
-              className="mt-6 w-full rounded-full bg-clay px-5 py-3 text-sm font-semibold text-white transition hover:bg-clay-dark disabled:cursor-wait disabled:opacity-70"
+              className="mt-6 w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary-dark disabled:cursor-wait disabled:opacity-70"
             >
               {status === 'sending' ? 'Enviando…' : 'Enviar mensaje'}
             </button>

@@ -1,62 +1,58 @@
-import { CheckCircle2 } from 'lucide-react'
-import { decalogo, pilares } from '@/content'
+import { ChevronDown } from 'lucide-react'
+import { decalogo, decalogoHeading, pilares, tenenciaIntro } from '@/content'
 
 export function Guide() {
   return (
-    <section id="tenencia" className="mx-auto max-w-6xl px-5 py-20">
-      <div className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-clay">
-          Guía
-        </p>
-        <h2 className="font-display mt-3 text-3xl font-semibold tracking-tight text-ink sm:text-4xl">
-          ¿Qué es la tenencia responsable?
-        </h2>
-        <p className="mt-4 text-lg leading-relaxed text-ink-soft">
-          Es el conjunto de obligaciones que asumís al convivir con un animal:
-          garantizar su salud física y emocional, evitar que cause daño o
-          molestias a terceros, y cumplir las normas de tu ciudad. Un animal no
-          se “tiene” como un objeto. Es un ser sintiente.
-        </p>
-      </div>
-
-      <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {pilares.map((pilar, index) => (
-          <article
-            key={pilar.title}
-            className="rounded-2xl border border-line bg-paper p-6 transition hover:border-forest/30"
-          >
-            <span className="font-display text-sm font-semibold text-clay">
-              0{index + 1}
-            </span>
-            <h3 className="mt-2 text-lg font-semibold text-ink">{pilar.title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-              {pilar.text}
-            </p>
-          </article>
-        ))}
-      </div>
-
-      <div className="mt-14 grid gap-8 rounded-[2rem] bg-sand p-7 lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
-        <div>
-          <h3 className="font-display text-2xl font-semibold text-ink">
-            Decálogo para tutores
-          </h3>
-          <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-            Si no podés ofrecerle tiempo, dinero para el veterinario y un
-            ambiente seguro, es mejor no adoptarlo todavía. Eso también es
-            responsabilidad.
+    <section id="tenencia" className="border-t border-line">
+      <div className="mx-auto max-w-6xl px-5 py-20 lg:py-28">
+        <div className="max-w-3xl">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-[2.75rem]">
+            ¿Qué es la tenencia responsable?
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            {tenenciaIntro}
           </p>
         </div>
-        <ol className="space-y-3">
-          {decalogo.map((item, index) => (
-            <li key={item} className="flex gap-3 text-sm text-ink">
-              <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-forest" />
-              <span>
-                <strong className="text-forest">{index + 1}.</strong> {item}
-              </span>
-            </li>
-          ))}
-        </ol>
+
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-start lg:gap-16">
+          <div className="divide-y divide-line overflow-hidden rounded-2xl border border-line">
+            {pilares.map((pilar, index) => (
+              <details
+                key={pilar.title}
+                className="group bg-card open:bg-muted open:[&_svg]:rotate-180"
+                open={index === 0}
+              >
+                <summary className="flex cursor-pointer items-center justify-between gap-4 px-5 py-5 text-base font-bold tracking-tight text-foreground sm:px-6 sm:text-lg">
+                  {pilar.title}
+                  <ChevronDown
+                    className="accordion-chevron h-5 w-5 shrink-0 text-muted-foreground transition-transform"
+                    aria-hidden
+                  />
+                </summary>
+                <p className="px-5 pb-5 text-sm leading-relaxed text-muted-foreground sm:px-6">
+                  {pilar.text}
+                </p>
+              </details>
+            ))}
+          </div>
+
+          <aside className="rounded-2xl bg-inverse px-6 py-8 text-inverse-foreground sm:px-8">
+            <p className="text-sm font-medium text-white/60">
+              Decálogo para tutores
+            </p>
+            <h3 className="mt-2 text-2xl font-bold tracking-tight">
+              {decalogoHeading}
+            </h3>
+            <ol className="mt-6 space-y-3">
+              {decalogo.map((item, index) => (
+                <li key={item} className="flex gap-3 text-sm leading-relaxed text-white/80">
+                  <span className="w-5 shrink-0 font-semibold text-primary">{index + 1}.</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ol>
+          </aside>
+        </div>
       </div>
     </section>
   )
